@@ -2,3 +2,8 @@
   float: right;
   padding: 0.5rem;
 }
+
+.Results-paragraph {
+  display: inline;
+  margin-left: 0.3rem;
+}

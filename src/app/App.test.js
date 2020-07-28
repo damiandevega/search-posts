@@ -1,13 +1,20 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { configure, mount, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { render } from '@testing-library/react';
 import TestProvider from '../config/TestProvider';
-import App from '../app/App';
+import App from './App';
 import Header from './components/Header/Header';
 import Layout from './containers/Layout/Layout';
 
 describe('<App />', () => {
+  it('Renders <App /> successfully without error', () => {
+    const app = render(
+      <TestProvider>
+        <App />
+      </TestProvider>
+    );
+    expect(app.container).toBeTruthy();
+  });
+
   it('Renders <Header /> successfully without error', () => {
     const header = render(
       <TestProvider>

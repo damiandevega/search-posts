@@ -8,7 +8,8 @@ const PostsList = ({ posts }) => {
   return (
     <Fragment>
       <div className="Results">
-        <strong>Results:</strong> {posts.length}
+        <strong>Results:</strong>
+        <p className="Results-paragraph">{posts.length}</p>
       </div>
       <Grid container spacing={3}>
         {posts.map((post) => (

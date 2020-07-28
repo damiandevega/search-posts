@@ -17,7 +17,10 @@ class Search extends Component {
       <div className="Search">
         <TextField
           label="Search By Title"
-          inputProps={{ 'aria-label': 'Search By Title' }}
+          inputProps={{
+            'aria-label': 'Search By Title',
+            'data-testid': 'search-textfield',
+          }}
           variant="outlined"
           color="primary"
           onChange={this.searchInputHandler}

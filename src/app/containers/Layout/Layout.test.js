@@ -1,9 +1,6 @@
 import React from 'react';
-import { render, fireEvent } from '@testing-library/react';
-import { configure, mount, shallow } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
+import { render } from '@testing-library/react';
 import TestProvider from '../../../config/TestProvider';
-import Layout from './Layout';
 import Search from '../../components/Search/Search';
 import PostsList from '../../components/PostsList/PostsList';
 import fetchPostsMockData from '../../../config/mocks/fetchPostsMockData';
