@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { CircularProgress } from '@material-ui/core';
 import { loadPosts } from '../../../store/actions/postsActions';
 import PostsList from '../../components/PostsList/PostsList';
@@ -34,7 +35,7 @@ class Layout extends Component {
 
     return (
       <div className="Layout">
-        <Search />
+        <Search posts={updatedPosts} />
         <PostsList posts={updatedPosts} />
       </div>
     );
@@ -44,8 +45,8 @@ class Layout extends Component {
 const mapStateToProps = ({ posts, search }) => ({
   isLoading: posts.isLoading,
   posts: posts.posts,
-  error: posts.error,
   search: search,
+  error: posts.error,
 });
 
 const mapDispatchToProps = (dispatch) =>
@@ -57,3 +58,10 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+
+Layout.propTypes = {
+  isLoading: PropTypes.bool,
+  posts: PropTypes.array.isRequired,
+  search: PropTypes.string,
+  error: PropTypes.string,
+};

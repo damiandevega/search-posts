@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Grid } from '@material-ui/core';
 import PostItem from '../PostItem/PostItem';
 
@@ -18,3 +19,7 @@ const PostsList = ({ posts }) => {
 };
 
 export default PostsList;
+
+PostsList.propTypes = {
+  posts: PropTypes.array.isRequired,
+};

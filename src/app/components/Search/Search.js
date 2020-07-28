@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
-// import AutoComplete from '../../HelperComponents/AutoComplete';
+// import AutoComplete from '../Autocomplete/Autocomplete';
 import { search } from '../../../store/actions/searchActions';
 import './Search.css';
 
@@ -46,3 +47,8 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(null, mapDispatchToProps)(Search);
+
+Search.propTypes = {
+  search: PropTypes.func,
+  posts: PropTypes.array,
+};

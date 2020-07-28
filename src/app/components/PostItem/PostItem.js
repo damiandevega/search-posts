@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import PropTypes from 'prop-types';
 import { Grid, Paper, Typography, Button } from '@material-ui/core';
 import { updatePost } from '../../../store/actions/postsActions';
 import './PostItem.css';
@@ -100,3 +101,10 @@ const mapDispatchToProps = (dispatch) =>
   );
 
 export default connect(null, mapDispatchToProps)(PostItem);
+
+PostItem.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  body: PropTypes.string.isRequired,
+  updatePost: PropTypes.func.isRequired,
+};
