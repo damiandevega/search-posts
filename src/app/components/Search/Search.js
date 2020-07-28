@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { TextField } from '@material-ui/core';
-// import AutoComplete from '../Autocomplete/Autocomplete';
 import { search } from '../../../store/actions/searchActions';
 import './Search.css';
 
@@ -16,13 +15,6 @@ class Search extends Component {
   render() {
     return (
       <div className="Search">
-        {/* {autoComplete ? (
-          <AutoComplete
-            value={search}
-            items={items}
-            onChange={handleSearchInput}
-          />
-        ) : ( */}
         <TextField
           label="Search By Title"
           inputProps={{ 'aria-label': 'Search By Title' }}
@@ -32,7 +24,6 @@ class Search extends Component {
           className="Search-input"
           fullWidth
         />
-        {/* )} */}
       </div>
     );
   }
