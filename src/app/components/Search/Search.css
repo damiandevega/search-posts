@@ -22,7 +22,11 @@
 
 .Search-autocomplete-item:hover {
   background-color: lightskyblue;
-  color: white;
+  color: black;
+}
+
+.Search-autocomplete-highlight {
+  background-color: rgb(255, 230, 0);
 }
 
 /* Extra small devices (phones, 600px and down) */

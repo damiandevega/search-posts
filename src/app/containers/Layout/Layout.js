@@ -41,7 +41,7 @@ class Layout extends PureComponent {
 
     return (
       <div className="Layout">
-        <Search posts={updatedPosts} />
+        <Search posts={updatedPosts} searchValue={search} />
         <PostsList posts={updatedPosts} />
       </div>
     );

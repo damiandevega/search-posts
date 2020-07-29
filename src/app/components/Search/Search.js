@@ -31,6 +31,17 @@ class Search extends PureComponent {
     this.searchInputHandler(null, selectedText);
   };
 
+  highlightMatchingText = (title) => {
+    const { searchValue } = this.props;
+    return this.highlight(searchValue, title);
+  };
+
+  highlight = (needle, haystack) =>
+    haystack.replace(
+      new RegExp(needle, 'gi'),
+      (str) => `<strong class="Search-autocomplete-highlight">${str}</strong>`
+    );
+
   render() {
     const { posts } = this.props;
     const { typing } = this.state;
@@ -56,9 +67,10 @@ class Search extends PureComponent {
                 key={post.id}
                 className="Search-autocomplete-item"
                 onClick={this.autoCompleteClickHandler}
-              >
-                {post.title}
-              </div>
+                dangerouslySetInnerHTML={{
+                  __html: this.highlightMatchingText(post.title),
+                }}
+              ></div>
             ))}
           </div>
         )}
@@ -79,5 +91,6 @@ export default connect(null, mapDispatchToProps)(Search);
 
 Search.propTypes = {
   search: PropTypes.func,
+  searchValue: PropTypes.string,
   posts: PropTypes.array,
 };
