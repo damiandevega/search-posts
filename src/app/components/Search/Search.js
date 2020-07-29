@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import { TextField } from '@material-ui/core';
 import { search } from '../../../store/actions/searchActions';
 import './Search.css';
 
-class Search extends Component {
+class Search extends PureComponent {
   state = {
     typing: false,
   };

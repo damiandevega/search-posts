@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -8,7 +8,7 @@ import PostsList from '../../components/PostsList/PostsList';
 import Search from '../../components/Search/Search';
 import './Layout.css';
 
-class Layout extends Component {
+class Layout extends PureComponent {
   componentDidMount = () => {
     this.props.getPosts();
   };
@@ -18,7 +18,11 @@ class Layout extends Component {
     let updatedPosts;
 
     if (isLoading) {
-      return <CircularProgress />;
+      return (
+        <div className="Loading">
+          <CircularProgress />
+        </div>
+      );
     }
 
     if (error) {

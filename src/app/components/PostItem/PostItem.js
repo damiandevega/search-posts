@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -6,7 +6,7 @@ import { Grid, Paper, Typography, Button } from '@material-ui/core';
 import { updatePost } from '../../../store/actions/postsActions';
 import './PostItem.css';
 
-class PostItem extends Component {
+class PostItem extends PureComponent {
   state = {
     editing: false,
   };
