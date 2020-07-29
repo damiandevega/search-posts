@@ -36,9 +36,9 @@ class Search extends PureComponent {
     return this.highlight(searchValue, title);
   };
 
-  highlight = (needle, haystack) =>
-    haystack.replace(
-      new RegExp(needle, 'gi'),
+  highlight = (search, title) =>
+    title.replace(
+      new RegExp(search, 'gi'),
       (str) => `<strong class="Search-autocomplete-highlight">${str}</strong>`
     );
 
