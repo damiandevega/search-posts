@@ -11,7 +11,7 @@ describe('<Layout />', () => {
   it('Renders <Search /> successfully without error', () => {
     const search = render(
       <TestProvider>
-        <Search title="Test" />
+        <Search posts={postsMockData} />
       </TestProvider>
     );
     expect(search.container).toBeTruthy();

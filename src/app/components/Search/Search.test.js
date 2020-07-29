@@ -11,7 +11,7 @@ describe('<Search />', () => {
   it('Renders <Search /> successfully without error', () => {
     const search = render(
       <TestProvider>
-        <Search />
+        <Search posts={postsMockData} />
       </TestProvider>
     );
     expect(search.container).toBeTruthy();
@@ -20,7 +20,7 @@ describe('<Search />', () => {
   it('Show number of results that match number of posts that meet search value conditions', () => {
     const { getByTestId, getByText } = render(
       <TestProvider>
-        <Search title="Test" />
+        <Search posts={postsMockData} />
         <PostsList posts={postsMockData} />
       </TestProvider>
     );

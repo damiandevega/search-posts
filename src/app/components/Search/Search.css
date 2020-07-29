@@ -1,6 +1,28 @@
 .Search {
+  position: relative;
   margin: 0 auto 1.8rem auto;
   max-width: 50%;
+}
+
+.Search-autocomplete-container {
+  background-color: #fdfefe;
+  border: 1px solid lightgray;
+  padding: 0.1rem 0;
+  width: 100%;
+  margin: 0 auto;
+  position: absolute;
+  text-align: left;
+  z-index: 100;
+}
+
+.Search-autocomplete-item {
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+.Search-autocomplete-item:hover {
+  background-color: lightskyblue;
+  color: white;
 }
 
 /* Extra small devices (phones, 600px and down) */
