@@ -2,7 +2,7 @@ import React from 'react';
 import { render, fireEvent } from '@testing-library/react';
 import TestProvider from '../../../config/TestProvider';
 import Search from './Search';
-import PostsList from '../PostsList/PostsList';
+import PostsList from '../../components/PostsList/PostsList';
 import fetchPostsMockData from '../../../config/mocks/fetchPostsMockData';
 
 const postsMockData = JSON.parse(fetchPostsMockData);

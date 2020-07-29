@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import TestProvider from '../../../config/TestProvider';
-import Search from '../../components/Search/Search';
+import Search from '../../containers/Search/Search';
 import PostsList from '../../components/PostsList/PostsList';
 import fetchPostsMockData from '../../../config/mocks/fetchPostsMockData';
 

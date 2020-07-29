@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { CircularProgress } from '@material-ui/core';
 import { loadPosts } from '../../../store/actions/postsActions';
 import PostsList from '../../components/PostsList/PostsList';
-import Search from '../../components/Search/Search';
+import Search from '../Search/Search';
 import './Layout.css';
 
 class Layout extends PureComponent {
