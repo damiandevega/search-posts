@@ -28,7 +28,9 @@ class Layout extends Component {
     }
 
     if (search) {
-      updatedPosts = posts.filter((post) => post.title.includes(search));
+      updatedPosts = posts.filter((post) =>
+        post.title.toLowerCase().includes(search.toLowerCase())
+      );
     } else {
       updatedPosts = posts;
     }

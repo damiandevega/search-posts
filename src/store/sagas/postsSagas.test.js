@@ -1,9 +1,13 @@
 import { runSaga } from 'redux-saga';
 import { fetchPostsSaga, updatePostSaga } from './postsSagas';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
-import { FETCH_POSTS_SUCCESS } from '../../store/actions/actionTypes';
+import fetchUpdatedPostsMockData from '../../config/mocks/fetchUpdatedPostsMockData';
+import {
+  FETCH_POSTS_SUCCESS,
+  UPDATE_POSTS,
+} from '../../store/actions/actionTypes';
 
-describe('fetchPostsSaga', () => {
+describe('postsSagas', () => {
   it('Should call API and dispatch FETCH_POSTS_SUCCESS action with response data as payload', async () => {
     const dispatched = [];
 
@@ -12,29 +16,39 @@ describe('fetchPostsSaga', () => {
         dispatch: (action) => dispatched.push(action),
       },
       fetchPostsSaga
-    );
+    ).toPromise();
 
-    setTimeout(() => {
-      expect(dispatched).toEqual([
-        { type: FETCH_POSTS_SUCCESS, payload: JSON.parse(fetchPostsMockData) },
-      ]);
-    });
+    expect(dispatched).toEqual([
+      { type: FETCH_POSTS_SUCCESS, payload: JSON.parse(fetchPostsMockData) },
+    ]);
   });
 
-  // it('Should call API and dispatch FETCH_POSTS_SUCCESS action with response data as payload', async () => {
-  //   const dispatched = [];
+  it('Should call updatePostSaga and dispatch UPDATE_POSTS action with updated data as payload', async () => {
+    const dispatched = [];
+    const state = {
+      posts: {
+        posts: JSON.parse(fetchPostsMockData),
+      },
+    };
 
-  //   await runSaga(
-  //     {
-  //       dispatch: (action) => dispatched.push(action),
-  //     },
-  //     updatePostSaga
-  //   );
+    await runSaga(
+      {
+        dispatch: (action) => dispatched.push(action),
+        getState: () => state,
+      },
+      updatePostSaga,
+      {
+        payload: {
+          userId: 1,
+          body: 'Test',
+          id: 2,
+          title: 'Test',
+        },
+      }
+    ).toPromise();
 
-  //   setTimeout(() => {
-  //     expect(dispatched).toEqual([
-  //       { type: FETCH_POSTS_SUCCESS, payload: JSON.parse(fetchPostsMockData) },
-  //     ]);
-  //   });
-  // });
+    expect(dispatched).toEqual([
+      { type: UPDATE_POSTS, payload: JSON.parse(fetchUpdatedPostsMockData) },
+    ]);
+  });
 });
