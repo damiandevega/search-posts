@@ -23,7 +23,7 @@ const PostsList = ({ posts, classes }) => {
     <Fragment>
       <div className={classes.results}>
         <strong>Results:</strong>
-        <p className={classes.text}>{posts.length}</p>
+        <p className={classes.text} name="results">{posts.length}</p>
       </div>
       <Grid container spacing={3}>
         {posts.map((post) => (

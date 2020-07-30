@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, waitForElement } from '@testing-library/react';
 import TestProvider from '../../config/TestProvider';
 import PostsList from '../../app/components/PostsList';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
@@ -17,12 +17,22 @@ describe('<PostsList />', () => {
   });
 
   it('Shows number of results that match number of posts passed in as props', () => {
-    const { getByText } = render(
+    const { container } = render(
       <TestProvider>
         <PostsList posts={postsMockData} />
       </TestProvider>
     );
-    const resultsElement = getByText(/Results/i);
-    expect(resultsElement.nextSibling.textContent).toMatch('100');
+    const resultsElement = container.querySelector('p[name="results"]');
+    expect(resultsElement.textContent).toMatch('100');
+  });
+
+  it('Shows "No Posts Found From Search." text when no posts are passed in as props', async () => {
+    const { getByText } = render(
+      <TestProvider>
+        <PostsList posts={[]} />
+      </TestProvider>
+    );
+    const noResults = await waitForElement(() => getByText('No Posts Found From Search.'));
+    expect(noResults).toBeTruthy();
   });
 });

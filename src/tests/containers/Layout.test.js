@@ -11,6 +11,7 @@ import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
 const postsMockData = JSON.parse(fetchPostsMockData);
 
 const mockStore = configureStore();
+
 const mockWithSearch = { ...mockInitialState };
 mockWithSearch.search = 'qui e';
 let storeWithSearch = mockStore(mockWithSearch);

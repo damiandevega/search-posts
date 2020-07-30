@@ -73,12 +73,13 @@ const PostItem = (props) => {
           {!editing ? (
             <div className={classes.post} role="listitem">
               <Typography variant="h6">
-                <div className={classes.header}>{title}</div>
+                <div className={classes.header} name="title">{title}</div>
               </Typography>
               <Typography variant="body2" paragraph>
                 {body}
               </Typography>
               <Button
+                name="edit"
                 variant="outlined"
                 color="primary"
                 onClick={editToggleHandler}
@@ -91,18 +92,20 @@ const PostItem = (props) => {
               <form onSubmit={submitFormHandler}>
                 <input
                   required
+                  name="edit-input"
                   defaultValue={title}
                   ref={titleTextInput}
                   className={classes.input}
                 />
                 <textarea
                   required
+                  name="edit-textarea"
                   defaultValue={body}
                   ref={bodyTextInput}
                   className={classes.textarea}
                 />
                 <div className={classes.buttonContainer}>
-                  <Button type="submit" variant="outlined" color="primary">
+                  <Button type="submit" variant="outlined" color="primary" name="save">
                     Save
                   </Button>
                   <Button
