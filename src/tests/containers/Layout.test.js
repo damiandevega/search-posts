@@ -4,7 +4,7 @@ import configureStore from 'redux-mock-store';
 import TestProvider from '../../config/TestProvider';
 import mockInitialState from '../../config/mocks/initialState';
 import Layout from '../../app/containers/Layout';
-import Search from '../../app/containers/Search';
+import Search from '../../app/components/Search';
 import PostsList from '../../app/components/PostsList';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
 

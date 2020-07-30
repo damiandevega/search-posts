@@ -45,8 +45,8 @@ const titleTextInput = React.createRef();
 const bodyTextInput = React.createRef();
 
 const PostItem = (props) => {
-  const { classes, id, title, body } = props;
   const [editing, setEditing] = useState(false);
+  const { classes, id, title, body } = props;
 
   const editToggleHandler = () => {
     setEditing(!editing)

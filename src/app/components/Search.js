@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes, { shape, number, string } from 'prop-types';
@@ -47,77 +47,72 @@ const styles = (theme) => ({
   },
 });
 
-class Search extends PureComponent {
-  state = {
-    typing: false,
-  };
+const searchInput = React.createRef();
 
-  searchInput = React.createRef();
+const Search = (props) => {
+  const [typing, setTyping] = useState(false);
+  const { classes, posts } = props;
 
-  searchInputHandler = (event, text) => {
+  const searchInputHandler = (event, text) => {
     let searchValue;
     if (event) {
       searchValue = event.target.value;
-      this.setState({ typing: searchValue.length > 0 });
+      setTyping(searchValue.length > 0)
     } else {
       searchValue = text;
-      this.searchInput.current.value = searchValue;
-      this.setState({ typing: false });
+      searchInput.current.value = searchValue;
+      setTyping(false)
     }
-    this.props.search(searchValue);
+    props.search(searchValue);
   };
 
-  autoCompleteClickHandler = (event) => {
+  const autoCompleteClickHandler = (event) => {
     const selectedText = event.target.textContent;
-    this.searchInputHandler(null, selectedText);
+    searchInputHandler(null, selectedText);
   };
 
-  highlightMatchingText = (title) => {
-    const { searchValue } = this.props;
-    return this.highlight(searchValue, title);
+  const highlightMatchingText = (title) => {
+    const { searchValue } = props;
+    return highlight(searchValue, title);
   };
 
-  highlight = (search, title) =>
+  const highlight = (search, title) =>
     title.replace(
       new RegExp(search, 'gi'),
       (str) => `<strong style="background-color: rgb(255, 230, 0);">${str}</strong>`
     );
 
-  render() {
-    const { classes, posts } = this.props;
-    const { typing } = this.state;
-    return (
-      <div className={classes.root}>
-        <Input
-          label="Search By Title"
-          inputProps={{
-            'aria-label': 'Search By Title',
-            role: 'input',
-            ref: this.searchInput,
-          }}
-          variant="outlined"
-          color="primary"
-          onChange={this.searchInputHandler}
-          fullWidth
-        />
-        {typing && (
-          <div className={classes.autocompleteContainer}>
-            {posts.map((post) => (
-              <div
-                key={post.id}
-                role="menuitem"
-                className={classes.autocompleteItem}
-                onClick={this.autoCompleteClickHandler}
-                dangerouslySetInnerHTML={{
-                  __html: this.highlightMatchingText(post.title),
-                }}
-              ></div>
-            ))}
-          </div>
-        )}
-      </div>
-    );
-  }
+  return (
+    <div className={classes.root}>
+      <Input
+        label="Search By Title"
+        inputProps={{
+          'aria-label': 'Search By Title',
+          role: 'input',
+          ref: searchInput,
+        }}
+        variant="outlined"
+        color="primary"
+        onChange={searchInputHandler}
+        fullWidth
+      />
+      {typing && (
+        <div className={classes.autocompleteContainer}>
+          {posts.map((post) => (
+            <div
+              key={post.id}
+              role="menuitem"
+              className={classes.autocompleteItem}
+              onClick={autoCompleteClickHandler}
+              dangerouslySetInnerHTML={{
+                __html: highlightMatchingText(post.title),
+              }}
+            ></div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -128,7 +123,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(Search));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(Search)));
 
 Search.propTypes = {
   search: PropTypes.func,
