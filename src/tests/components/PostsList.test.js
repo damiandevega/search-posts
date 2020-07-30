@@ -23,7 +23,6 @@ describe('<PostsList />', () => {
       </TestProvider>
     );
     const resultsElement = getByText(/Results/i);
-
     expect(resultsElement.nextSibling.textContent).toMatch('100');
   });
 });

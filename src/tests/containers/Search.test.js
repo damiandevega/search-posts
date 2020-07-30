@@ -1,6 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
+import configureStore from 'redux-mock-store';
 import TestProvider from '../../config/TestProvider';
+import mockInitialState from '../../config/mocks/initialState';
 import Search from '../../app/containers/Search';
 // import PostsList from '../../components/PostsList/PostsList';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';

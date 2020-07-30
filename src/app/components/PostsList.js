@@ -12,6 +12,9 @@ const styles = () => ({
   text: {
     display: 'inline',
     marginLeft: '0.3rem'
+  },
+  center: {
+    margin: '0 auto'
   }
 });
 
@@ -31,6 +34,9 @@ const PostsList = ({ posts, classes }) => {
             body={post.body}
           ></PostItem>
         ))}
+        {!posts.length && (
+          <h1 className={classes.center}>No Posts Found From Search.</h1>
+        )}
       </Grid>
     </Fragment>
   );

@@ -101,10 +101,11 @@ class Search extends PureComponent {
           fullWidth
         />
         {typing && (
-          <div className={classes.autocompleteContainer} role="menuitem">
+          <div className={classes.autocompleteContainer}>
             {posts.map((post) => (
               <div
                 key={post.id}
+                role="menuitem"
                 className={classes.autocompleteItem}
                 onClick={this.autoCompleteClickHandler}
                 dangerouslySetInnerHTML={{

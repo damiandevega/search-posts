@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, fireEvent, act, screen } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import configureStore from 'redux-mock-store';
 import TestProvider from '../../config/TestProvider';
 import mockInitialState from '../../config/mocks/initialState';
@@ -14,6 +14,10 @@ const mockStore = configureStore();
 const mockWithSearch = { ...mockInitialState };
 mockWithSearch.search = 'qui e';
 let storeWithSearch = mockStore(mockWithSearch);
+
+const mockWithAutocomplete = { ...mockInitialState };
+mockWithAutocomplete.search = 'sunt';
+let storeWithAutocomplete = mockStore(mockWithAutocomplete);
 
 describe('<Layout />', () => {
   it('Renders <Search /> successfully without error', () => {
@@ -47,7 +51,9 @@ describe('<Layout />', () => {
         value: 'qui e',
       },
     });
+
     expect(searchElement.value).toBe('qui e');
+
     fireEvent.blur(searchElement);
 
     rerender(
@@ -57,5 +63,32 @@ describe('<Layout />', () => {
     );
 
     expect(container.querySelectorAll('div[role="listitem"]').length).toBe(4);
+  });
+
+  it('Filters autocomplete options shown on the screen when a search value is entered', async () => {
+    const { container, rerender } = render(
+      <TestProvider>
+        <Layout />
+      </TestProvider>
+    );
+
+    const searchElement = container.querySelector('input');
+    fireEvent.change(searchElement, {
+      target: {
+        value: 'sunt',
+      },
+    });
+
+    expect(searchElement.value).toBe('sunt');
+
+    fireEvent.focus(searchElement);
+
+    rerender(
+      <TestProvider mockStore={storeWithAutocomplete}>
+        <Layout />
+      </TestProvider>
+    );
+
+    expect(container.querySelectorAll('div[role="menuitem"]').length).toBe(7);
   });
 });
