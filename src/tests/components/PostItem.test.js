@@ -20,10 +20,11 @@ describe('<PostItem />', () => {
         />
       </TestProvider>
     );
-    expect(postItem.container).toBeTruthy();
+    expect(postItem.container).toBeDefined();
+    expect(postItem.container.children.length).toBe(1);
   });
 
-  it('Shows input populated with current post title when EDIT button is clicked', () => {
+  it('Shows input populated with current post title when edit button is clicked', () => {
     const { container, getByRole } = render(
       <TestProvider>
         <PostItem

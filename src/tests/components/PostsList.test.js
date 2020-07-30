@@ -13,7 +13,8 @@ describe('<PostsList />', () => {
         <PostsList posts={postsMockData} />
       </TestProvider>
     );
-    expect(postsList.container).toBeTruthy();
+    expect(postsList.container).toBeDefined();
+    expect(postsList.container.children.length).toBe(2);
   });
 
   it('Shows number of results that match number of posts passed in as props', () => {
@@ -33,6 +34,6 @@ describe('<PostsList />', () => {
       </TestProvider>
     );
     const noResults = await waitForElement(() => getByText('No Posts Found From Search.'));
-    expect(noResults).toBeTruthy();
+    expect(noResults).toBeDefined();
   });
 });

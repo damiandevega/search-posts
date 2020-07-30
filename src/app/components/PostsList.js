@@ -6,11 +6,12 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = () => ({
   results: {
-    float: 'right',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
     padding: '0.5rem'
   },
   text: {
-    display: 'inline',
     marginLeft: '0.3rem'
   },
   center: {
@@ -42,8 +43,6 @@ const PostsList = ({ posts, classes }) => {
   );
 };
 
-export default withStyles(styles)(PostsList);
-
 PostsList.propTypes = {
   posts: PropTypes.arrayOf(
     shape({
@@ -54,3 +53,5 @@ PostsList.propTypes = {
     })
   ).isRequired,
 };
+
+export default withStyles(styles)(PostsList);

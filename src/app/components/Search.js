@@ -27,6 +27,10 @@ const styles = (theme) => ({
       maxWidth: '50%',
     },
   },
+  label: {
+    fontWeight: 'bold',
+    marginBottom: '0.5rem'
+  },
   autocompleteContainer: {
     backgroundColor: '#fdfefe',
     border: '1px solid lightgray',
@@ -84,9 +88,11 @@ const Search = (props) => {
 
   return (
     <div className={classes.root}>
+      <label htmlFor="search-id" className={classes.label}>Search By Title:</label>
       <Input
         label="Search By Title"
         inputProps={{
+          id: 'search-id',
           'aria-label': 'Search By Title',
           role: 'input',
           ref: searchInput,
@@ -116,14 +122,7 @@ const Search = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      search: search,
-    },
-    dispatch
-  );
-
-export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(Search)));
+  bindActionCreators({ search: search }, dispatch);
 
 Search.propTypes = {
   search: PropTypes.func,
@@ -137,3 +136,5 @@ Search.propTypes = {
     })
   )
 };
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(Search)));

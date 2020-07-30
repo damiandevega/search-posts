@@ -27,7 +27,9 @@ describe('<Layout />', () => {
         <Search posts={postsMockData} />
       </TestProvider>
     );
-    expect(search.container).toBeTruthy();
+    expect(search.container).toBeDefined();
+    expect(search.container.children.length).toBe(1);
+    expect(search.container.querySelector('#search-id')).toBeDefined();
   });
 
   it('Renders <PostsList /> successfully without error', () => {
@@ -36,7 +38,8 @@ describe('<Layout />', () => {
         <PostsList posts={postsMockData} />
       </TestProvider>
     );
-    expect(postsList.container).toBeTruthy();
+    expect(postsList.container).toBeDefined();
+    expect(postsList.container.querySelectorAll('div[role="listitem"]').length).toBe(100);
   });
 
   it('Filters posts shown on the screen when a search value is entered', async () => {

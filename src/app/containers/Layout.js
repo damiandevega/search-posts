@@ -67,14 +67,7 @@ const mapStateToProps = ({ posts, search }) => ({
 });
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      getPosts: loadPosts,
-    },
-    dispatch
-  );
-
-export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Layout));
+  bindActionCreators({ getPosts: loadPosts }, dispatch);
 
 Layout.propTypes = {
   isLoading: PropTypes.bool,
@@ -89,3 +82,5 @@ Layout.propTypes = {
   search: PropTypes.string,
   error: PropTypes.string,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Layout));

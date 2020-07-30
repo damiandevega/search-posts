@@ -125,14 +125,7 @@ const PostItem = (props) => {
 }
 
 const mapDispatchToProps = (dispatch) =>
-  bindActionCreators(
-    {
-      updatePost: updatePost,
-    },
-    dispatch
-  );
-
-export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(PostItem)));
+  bindActionCreators({ updatePost: updatePost }, dispatch);
 
 PostItem.propTypes = {
   id: PropTypes.number.isRequired,
@@ -140,3 +133,5 @@ PostItem.propTypes = {
   body: PropTypes.string.isRequired,
   updatePost: PropTypes.func.isRequired,
 };
+
+export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(PostItem)));

@@ -12,16 +12,20 @@ describe('<App />', () => {
         <App />
       </TestProvider>
     );
-    expect(app.container).toBeTruthy();
+    expect(app.container).toBeDefined();
+    expect(app.container.children.length).toBe(2);
+    expect(app.container.querySelector('h4').textContent).toBe('Search Posts');
   });
 
   it('Renders <Header /> successfully without error', () => {
     const header = render(
       <TestProvider>
-        <Header title="Test" />
+        <Header title="Test Title" />
       </TestProvider>
     );
-    expect(header.container).toBeTruthy();
+    expect(header.container).toBeDefined();
+    expect(header.container.children.length).toBe(1);
+    expect(header.container.querySelector('h4').textContent).toBe('Test Title');
   });
 
   it('Renders <Layout /> successfully without error', () => {
@@ -30,6 +34,7 @@ describe('<App />', () => {
         <Layout />
       </TestProvider>
     );
-    expect(layout.container).toBeTruthy();
+    expect(layout.container).toBeDefined();
+    expect(layout.container.children.length).toBe(1);
   });
 });

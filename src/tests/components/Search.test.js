@@ -13,6 +13,6 @@ describe('<Search />', () => {
         <Search posts={postsMockData} />
       </TestProvider>
     );
-    expect(search.container).toBeTruthy();
+    expect(search.container).toBeDefined();
   });
 });
