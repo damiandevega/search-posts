@@ -1,12 +1,23 @@
 import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import PropTypes, { shape, number, string } from 'prop-types';
 import { CircularProgress } from '@material-ui/core';
 import { loadPosts } from '../../../store/actions/postsActions';
 import PostsList from '../../components/PostsList/PostsList';
 import Search from '../Search/Search';
-import './Layout.css';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+const styles = () => ({
+  root: {
+    width: '96%',
+    margin: '2rem auto'
+  },
+  loading: {
+    margin: '5rem auto',
+    textAlign: 'center',
+  }
+});
 
 class Layout extends PureComponent {
   componentDidMount = () => {
@@ -14,12 +25,12 @@ class Layout extends PureComponent {
   };
 
   render() {
-    const { isLoading, posts, error, search } = this.props;
+    const { classes, isLoading, posts, error, search } = this.props;
     let updatedPosts;
 
     if (isLoading) {
       return (
-        <div className="Loading">
+        <div className={classes.loading}>
           <CircularProgress />
         </div>
       );
@@ -40,7 +51,7 @@ class Layout extends PureComponent {
     }
 
     return (
-      <div className="Layout">
+      <div className={classes.root}>
         <Search posts={updatedPosts} searchValue={search} />
         <PostsList posts={updatedPosts} />
       </div>
@@ -63,11 +74,18 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(mapStateToProps, mapDispatchToProps)(Layout);
+export default connect(mapStateToProps, mapDispatchToProps)(withStyles(styles)(Layout));
 
 Layout.propTypes = {
   isLoading: PropTypes.bool,
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(
+    shape({
+      id: number,
+      userid: number,
+      title: string,
+      body: string,
+    })
+  ).isRequired,
   search: PropTypes.string,
   error: PropTypes.string,
 };

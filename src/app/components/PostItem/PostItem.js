@@ -4,7 +4,42 @@ import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
 import { Grid, Paper, Typography, Button } from '@material-ui/core';
 import { updatePost } from '../../../store/actions/postsActions';
-import './PostItem.css';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+const styles = () => ({
+  post: {
+    height: '280px',
+    padding: '1rem',
+    textAlign: 'center'
+  },
+  header: {
+    fontWeight: 'bold',
+    lineHeight: '1.3rem',
+    margin: '1rem auto'
+  },
+  buttonContainer: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '55%',
+    margin: '0.35rem auto'
+  },
+  input: {
+    margin: '1rem auto',
+    width: '90%',
+    padding: '0.5rem',
+    border: '1px solid #999',
+    borderRadius: '3px'
+  },
+  textarea: {
+    width: '90%',
+    maxWidth: '90%',
+    height: '140px',
+    maxHeight: '140px',
+    padding: '0.5rem',
+    border: '1px solid #999',
+    borderRadius: '3px'
+  }
+});
 
 class PostItem extends PureComponent {
   state = {
@@ -34,16 +69,16 @@ class PostItem extends PureComponent {
   };
 
   render() {
-    const { id, title, body } = this.props;
+    const { classes, id, title, body } = this.props;
     const { editing } = this.state;
 
     return (
       <Grid item xs={12} sm={6} md={4} key={id}>
         <Paper>
           {!editing ? (
-            <div className="PostItem">
+            <div className={classes.post} role="listitem">
               <Typography variant="h6">
-                <div className="PostItem-header">{title}</div>
+                <div className={classes.header}>{title}</div>
               </Typography>
               <Typography variant="body2" paragraph>
                 {body}
@@ -57,21 +92,21 @@ class PostItem extends PureComponent {
               </Button>
             </div>
           ) : (
-            <div className="PostItem">
+            <div className={classes.post}>
               <form onSubmit={this.submitFormHandler}>
                 <input
                   required
                   defaultValue={title}
                   ref={this.titleTextInput}
-                  className="PostItem-input"
+                  className={classes.input}
                 />
                 <textarea
                   required
                   defaultValue={body}
                   ref={this.bodyTextInput}
-                  className="PostItem-textarea"
+                  className={classes.textarea}
                 />
-                <div className="PostItem-btn-container">
+                <div className={classes.buttonContainer}>
                   <Button type="submit" variant="outlined" color="primary">
                     Save
                   </Button>
@@ -100,7 +135,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(null, mapDispatchToProps)(PostItem);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(PostItem));
 
 PostItem.propTypes = {
   id: PropTypes.number.isRequired,

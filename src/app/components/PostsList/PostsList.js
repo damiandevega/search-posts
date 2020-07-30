@@ -1,15 +1,26 @@
 import React, { Fragment } from 'react';
-import PropTypes from 'prop-types';
+import PropTypes, { shape, number, string } from 'prop-types';
 import { Grid } from '@material-ui/core';
 import PostItem from '../PostItem/PostItem';
-import './PostsList.css';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const PostsList = ({ posts }) => {
+const styles = () => ({
+  results: {
+    float: 'right',
+    padding: '0.5rem'
+  },
+  text: {
+    display: 'inline',
+    marginLeft: '0.3rem'
+  }
+});
+
+const PostsList = ({ posts, classes }) => {
   return (
     <Fragment>
-      <div className="Results">
+      <div className={classes.results}>
         <strong>Results:</strong>
-        <p className="Results-paragraph">{posts.length}</p>
+        <p className={classes.text}>{posts.length}</p>
       </div>
       <Grid container spacing={3}>
         {posts.map((post) => (
@@ -25,8 +36,15 @@ const PostsList = ({ posts }) => {
   );
 };
 
-export default PostsList;
+export default withStyles(styles)(PostsList);
 
 PostsList.propTypes = {
-  posts: PropTypes.array.isRequired,
+  posts: PropTypes.arrayOf(
+    shape({
+      id: number,
+      userid: number,
+      title: string,
+      body: string,
+    })
+  ).isRequired,
 };

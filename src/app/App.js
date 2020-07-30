@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import Header from './components/Header/Header';
 import Layout from './containers/Layout/Layout';
-import './App.css';
 
 const App = () => {
   return (
-    <div className="App">
+    <Fragment>
       <Header title="Search Posts" />
       <Layout />
-    </div>
+    </Fragment>
   );
 };
 

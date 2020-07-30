@@ -2,17 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import './index.css';
-import App from './app/App';
 import * as serviceWorker from './serviceWorker';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider } from '@material-ui/styles';
+
+import App from './app/App';
+import theme from './styles/theme';
 import configureStore from './store';
 
 const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
+      <ThemeProvider theme={theme}>
+    <CssBaseline />
     <Provider store={store}>
       <App />
     </Provider>
+    </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')
 );

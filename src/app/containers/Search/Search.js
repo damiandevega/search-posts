@@ -1,10 +1,51 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import PropTypes from 'prop-types';
-import { TextField } from '@material-ui/core';
+import PropTypes, { shape, number, string } from 'prop-types';
+import { Input } from '@material-ui/core';
 import { search } from '../../../store/actions/searchActions';
-import './Search.css';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+const styles = (theme) => ({
+  root: {
+    position: 'relative',
+    margin: '0 auto 1.8rem auto',
+    maxWidth: '50%',
+    [theme.breakpoints.up('xs')]: {
+      maxWidth: '95%',
+    },
+    [theme.breakpoints.up('sm')]: {
+      maxWidth: '90%',
+    },
+    [theme.breakpoints.up('md')]: {
+      maxWidth: '65%',
+    },
+    [theme.breakpoints.up('lg')]: {
+      maxWidth: '55%',
+    },
+    [theme.breakpoints.up('xl')]: {
+      maxWidth: '50%',
+    },
+  },
+  autocompleteContainer: {
+    backgroundColor: '#fdfefe',
+    border: '1px solid lightgray',
+    padding: '0.1rem 0',
+    width: '100%',
+    margin: '0 auto',
+    position: 'absolute',
+    textAlign: 'left',
+    zIndex: 100
+  },
+  autocompleteItem: {
+    padding: '0.5rem',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: theme.palette.primary.main,
+      color: 'black'
+    }
+  },
+});
 
 class Search extends PureComponent {
   state = {
@@ -39,20 +80,19 @@ class Search extends PureComponent {
   highlight = (search, title) =>
     title.replace(
       new RegExp(search, 'gi'),
-      (str) => `<strong class="Search-autocomplete-highlight">${str}</strong>`
+      (str) => `<strong style="background-color: rgb(255, 230, 0);">${str}</strong>`
     );
 
   render() {
-    const { posts } = this.props;
+    const { classes, posts } = this.props;
     const { typing } = this.state;
     return (
-      <div className="Search">
-        <TextField
-          className="Search-input"
+      <div className={classes.root}>
+        <Input
           label="Search By Title"
           inputProps={{
             'aria-label': 'Search By Title',
-            'data-testid': 'search-textfield',
+            role: 'input',
             ref: this.searchInput,
           }}
           variant="outlined"
@@ -61,11 +101,11 @@ class Search extends PureComponent {
           fullWidth
         />
         {typing && (
-          <div className="Search-autocomplete-container">
+          <div className={classes.autocompleteContainer} role="menuitem">
             {posts.map((post) => (
               <div
                 key={post.id}
-                className="Search-autocomplete-item"
+                className={classes.autocompleteItem}
                 onClick={this.autoCompleteClickHandler}
                 dangerouslySetInnerHTML={{
                   __html: this.highlightMatchingText(post.title),
@@ -87,10 +127,17 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(null, mapDispatchToProps)(Search);
+export default connect(null, mapDispatchToProps)(withStyles(styles)(Search));
 
 Search.propTypes = {
   search: PropTypes.func,
   searchValue: PropTypes.string,
-  posts: PropTypes.array,
+  posts: PropTypes.arrayOf(
+    shape({
+      id: number,
+      userid: number,
+      title: string,
+      body: string,
+    })
+  )
 };
