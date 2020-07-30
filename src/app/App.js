@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
-import Header from './components/Header/Header';
-import Layout from './containers/Layout/Layout';
+import Header from './components/Header';
+import Layout from './containers/Layout';
 
 const App = () => {
   return (

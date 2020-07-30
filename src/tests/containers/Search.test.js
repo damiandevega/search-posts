@@ -1,10 +1,9 @@
 import React from 'react';
-import { render, fireEvent, waitForElement, act, screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import TestProvider from '../../../config/TestProvider';
-import Search from './Search';
-import PostsList from '../../components/PostsList/PostsList';
-import fetchPostsMockData from '../../../config/mocks/fetchPostsMockData';
+import { render } from '@testing-library/react';
+import TestProvider from '../../config/TestProvider';
+import Search from '../../app/containers/Search';
+// import PostsList from '../../components/PostsList/PostsList';
+import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
 
 const postsMockData = JSON.parse(fetchPostsMockData);
 

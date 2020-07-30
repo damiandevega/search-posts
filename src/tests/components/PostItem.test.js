@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
-import TestProvider from '../../../config/TestProvider';
-import PostItem from './PostItem';
+import TestProvider from '../../config/TestProvider';
+import PostItem from '../../app/components/PostItem';
 
 const itemMockData = {
   id: 2,

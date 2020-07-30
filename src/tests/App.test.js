@@ -1,9 +1,9 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import TestProvider from '../config/TestProvider';
-import App from './App';
-import Header from './components/Header/Header';
-import Layout from './containers/Layout/Layout';
+import App from '../app/App';
+import Header from '../app/components/Header';
+import Layout from '../app/containers/Layout';
 
 describe('<App />', () => {
   it('Renders <App /> successfully without error', () => {

@@ -1,5 +1,5 @@
 import { runSaga } from 'redux-saga';
-import { fetchPostsSaga, updatePostSaga } from './postsSagas';
+import { fetchPostsSaga, updatePostSaga } from '../../store/sagas/postsSagas';
 import fetchPostsMockData from '../../config/mocks/fetchPostsMockData';
 import fetchUpdatedPostsMockData from '../../config/mocks/fetchUpdatedPostsMockData';
 import {

@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes, { shape, number, string } from 'prop-types';
 import { CircularProgress } from '@material-ui/core';
-import { loadPosts } from '../../../store/actions/postsActions';
-import PostsList from '../../components/PostsList/PostsList';
-import Search from '../Search/Search';
+import { loadPosts } from '../../store/actions/postsActions';
+import PostsList from '../../app/components/PostsList';
+import Search from './Search';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = () => ({
