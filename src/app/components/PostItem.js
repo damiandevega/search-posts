@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react';
+import React, { useState, memo } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes from 'prop-types';
@@ -41,36 +41,31 @@ const styles = () => ({
   }
 });
 
-class PostItem extends PureComponent {
-  state = {
-    editing: false,
+const titleTextInput = React.createRef();
+const bodyTextInput = React.createRef();
+
+const PostItem = (props) => {
+  const { classes, id, title, body } = props;
+  const [editing, setEditing] = useState(false);
+
+  const editToggleHandler = () => {
+    setEditing(!editing)
   };
 
-  titleTextInput = React.createRef();
-  bodyTextInput = React.createRef();
-
-  editToggleHandler = () => {
-    this.setState({ editing: !this.state.editing });
-  };
-
-  submitFormHandler = (event) => {
+  const submitFormHandler = (event) => {
     event.preventDefault();
 
-    const title = this.titleTextInput.current.value;
-    const body = this.bodyTextInput.current.value;
+    const title = titleTextInput.current.value;
+    const body = bodyTextInput.current.value;
 
-    this.props.updatePost({
-      id: this.props.id,
+    props.updatePost({
+      id: id,
       title: title,
       body: body,
     });
 
-    this.editToggleHandler();
+    editToggleHandler();
   };
-
-  render() {
-    const { classes, id, title, body } = this.props;
-    const { editing } = this.state;
 
     return (
       <Grid item xs={12} sm={6} md={4} key={id}>
@@ -86,24 +81,24 @@ class PostItem extends PureComponent {
               <Button
                 variant="outlined"
                 color="primary"
-                onClick={this.editToggleHandler}
+                onClick={editToggleHandler}
               >
                 Edit
               </Button>
             </div>
           ) : (
             <div className={classes.post}>
-              <form onSubmit={this.submitFormHandler}>
+              <form onSubmit={submitFormHandler}>
                 <input
                   required
                   defaultValue={title}
-                  ref={this.titleTextInput}
+                  ref={titleTextInput}
                   className={classes.input}
                 />
                 <textarea
                   required
                   defaultValue={body}
-                  ref={this.bodyTextInput}
+                  ref={bodyTextInput}
                   className={classes.textarea}
                 />
                 <div className={classes.buttonContainer}>
@@ -113,7 +108,7 @@ class PostItem extends PureComponent {
                   <Button
                     variant="outlined"
                     color="secondary"
-                    onClick={this.editToggleHandler}
+                    onClick={editToggleHandler}
                   >
                     Cancel
                   </Button>
@@ -124,7 +119,6 @@ class PostItem extends PureComponent {
         </Paper>
       </Grid>
     );
-  }
 }
 
 const mapDispatchToProps = (dispatch) =>
@@ -135,7 +129,7 @@ const mapDispatchToProps = (dispatch) =>
     dispatch
   );
 
-export default connect(null, mapDispatchToProps)(withStyles(styles)(PostItem));
+export default connect(null, mapDispatchToProps)(withStyles(styles)(memo(PostItem)));
 
 PostItem.propTypes = {
   id: PropTypes.number.isRequired,
