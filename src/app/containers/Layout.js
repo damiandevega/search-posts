@@ -3,10 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes, { shape, number, string } from 'prop-types';
 import { CircularProgress, Typography } from '@material-ui/core';
-import { loadPosts } from '../../store/actions/postsActions';
-import PostsList from '../../app/components/PostsList';
-import Search from '../components/Search';
 import withStyles from '@material-ui/core/styles/withStyles';
+import Search from '../components/Search';
+import PostsList from '../../app/components/PostsList';
+import { loadPosts } from '../../store/actions/postsActions';
 
 const styles = () => ({
   root: {

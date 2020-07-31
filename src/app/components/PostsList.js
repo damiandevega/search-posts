@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react';
 import PropTypes, { shape, number, string } from 'prop-types';
 import { Grid, Typography } from '@material-ui/core';
-import PostItem from '../components/PostItem';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PostItem from '../components/PostItem';
 
 const styles = () => ({
   results: {

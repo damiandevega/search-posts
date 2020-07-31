@@ -3,8 +3,8 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import PropTypes, { shape, number, string } from 'prop-types';
 import { Input } from '@material-ui/core';
-import { search } from '../../store/actions/searchActions';
 import withStyles from '@material-ui/core/styles/withStyles';
+import { search } from '../../store/actions/searchActions';
 
 const styles = (theme) => ({
   root: {
