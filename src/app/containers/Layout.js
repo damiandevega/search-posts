@@ -16,11 +16,16 @@ const styles = () => ({
   loading: {
     margin: '5rem auto',
     textAlign: 'center',
+  },
+  error: {
+    fontSize: '32px',
+    padding: '1rem',
   }
 });
 
 class Layout extends PureComponent {
   componentDidMount = () => {
+    // fetch posts from api and receive posts as props via mapStateToProps
     this.props.getPosts();
   };
 
@@ -38,11 +43,12 @@ class Layout extends PureComponent {
 
     if (error) {
       return (
-        <Typography variant="h2">There was a problem loading the posts. Please try again later.</Typography>
+        <Typography variant="h2" className={classes.error}>There was a problem loading the posts. Please try again later.</Typography>
       );
     }
 
     if (search) {
+      // filter posts based on search input value
       updatedPosts = posts.filter((post) =>
         post.title.toLowerCase().includes(search.toLowerCase())
       );

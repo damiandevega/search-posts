@@ -7,11 +7,18 @@ describe('<Header />', () => {
   it('Renders <Header /> successfully without error', () => {
     const header = render(
       <TestProvider>
-        <Header title="Test" />
+        <Header title="Search Posts" />
       </TestProvider>
     );
     expect(header.container).toBeDefined();
     expect(header.container.children.length).toBe(1);
-    expect(header.container.querySelector('h1').textContent).toBe('Test');
+  });
+  it('Shows h1 title based on props passed in', () => {
+    const header = render(
+      <TestProvider>
+        <Header title="Test Title" />
+      </TestProvider>
+    );
+    expect(header.container.querySelector('h1').textContent).toBe('Test Title');
   });
 });

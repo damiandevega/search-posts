@@ -13,11 +13,11 @@ const store = configureStore();
 
 ReactDOM.render(
   <React.StrictMode>
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
     <CssBaseline />
-    <Provider store={store}>
-      <App />
-    </Provider>
+      <Provider store={store}>
+        <App />
+      </Provider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

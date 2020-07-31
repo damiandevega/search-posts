@@ -14,5 +14,6 @@ describe('<Search />', () => {
       </TestProvider>
     );
     expect(search.container).toBeDefined();
+    expect(search.container.querySelector('input[role="input"]')).toBeDefined();
   });
 });

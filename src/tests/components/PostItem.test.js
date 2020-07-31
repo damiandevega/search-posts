@@ -39,8 +39,24 @@ describe('<PostItem />', () => {
     fireEvent.click(editButton);
 
     const editInput = container.querySelector('input[name="edit-input"]');
-    const editTextarea = container.querySelector('textarea[name="edit-textarea"]');
     expect(editInput.value).toMatch('Title Value');
+  });
+
+  it('Shows textarea populated with current post body when edit button is clicked', () => {
+    const { container, getByRole } = render(
+      <TestProvider>
+        <PostItem
+          id={itemMockData.id}
+          title={itemMockData.title}
+          body={itemMockData.body}
+        />
+      </TestProvider>
+    );
+
+    const editButton = getByRole('button', { name: /edit/i });
+    fireEvent.click(editButton);
+
+    const editTextarea = container.querySelector('textarea[name="edit-textarea"]');
     expect(editTextarea.value).toMatch('Body Value');
   });
 });

@@ -59,6 +59,7 @@ const PostItem = (props) => {
     const title = titleTextInput.current.value;
     const body = bodyTextInput.current.value;
 
+    // updates post in store
     props.updatePost({
       id: id,
       title: title,

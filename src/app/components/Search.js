@@ -64,16 +64,19 @@ const Search = (props) => {
       searchInput.current.value = searchValue;
       setShowAutocomplete(false)
     }
+    // updates search value to store
     props.search(searchValue);
   };
 
   const autoCompleteClickHandler = (event) => {
     const selectedText = event.target.textContent;
+    // updates input field to user selected item from autocomplete
     searchInputHandler(null, selectedText);
   };
 
   const highlightMatchingText = (title) => {
     const { searchValue } = props;
+    // highlights matching text in autocomplete fields for better user experience
     return highlight(searchValue, title);
   };
 

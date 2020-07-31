@@ -11,6 +11,9 @@ const styles = () => ({
     alignItems: 'center',
     padding: '0.5rem'
   },
+  label: {
+    fontWeight: 'bold'
+  },
   text: {
     marginLeft: '0.3rem'
   },
@@ -25,8 +28,8 @@ const PostsList = ({ posts, classes }) => {
   return (
     <Fragment>
       <div className={classes.results}>
-        <strong>Results:</strong>
-        <Typography variant="body2" className={classes.text} name="results">{posts.length}</Typography>
+        <label className={classes.label} htmlFor="results-count">Results:</label>
+        <Typography variant="body2" className={classes.text} name="results" id="results-count">{posts.length}</Typography>
       </div>
       <Grid container spacing={3}>
         {posts.map((post) => (
