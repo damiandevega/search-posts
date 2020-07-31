@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import PropTypes, { shape, number, string } from 'prop-types';
-import { Grid } from '@material-ui/core';
+import { Grid, Typography } from '@material-ui/core';
 import PostItem from '../components/PostItem';
 import withStyles from '@material-ui/core/styles/withStyles';
 
@@ -14,7 +14,9 @@ const styles = () => ({
   text: {
     marginLeft: '0.3rem'
   },
-  center: {
+  error: {
+    fontSize: '32px',
+    padding: '1rem',
     margin: '0 auto'
   }
 });
@@ -24,7 +26,7 @@ const PostsList = ({ posts, classes }) => {
     <Fragment>
       <div className={classes.results}>
         <strong>Results:</strong>
-        <p className={classes.text} name="results">{posts.length}</p>
+        <Typography variant="body2" className={classes.text} name="results">{posts.length}</Typography>
       </div>
       <Grid container spacing={3}>
         {posts.map((post) => (
@@ -36,7 +38,7 @@ const PostsList = ({ posts, classes }) => {
           ></PostItem>
         ))}
         {!posts.length && (
-          <h1 className={classes.center}>No Posts Found From Search.</h1>
+          <Typography variant="h2" className={classes.error}>No Posts Found From Search.</Typography>
         )}
       </Grid>
     </Fragment>

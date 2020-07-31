@@ -14,7 +14,7 @@ describe('<App />', () => {
     );
     expect(app.container).toBeDefined();
     expect(app.container.children.length).toBe(2);
-    expect(app.container.querySelector('h4').textContent).toBe('Search Posts');
+    expect(app.container.querySelector('h1').textContent).toBe('Search Posts');
   });
 
   it('Renders <Header /> successfully without error', () => {
@@ -25,7 +25,7 @@ describe('<App />', () => {
     );
     expect(header.container).toBeDefined();
     expect(header.container.children.length).toBe(1);
-    expect(header.container.querySelector('h4').textContent).toBe('Test Title');
+    expect(header.container.querySelector('h1').textContent).toBe('Test Title');
   });
 
   it('Renders <Layout /> successfully without error', () => {

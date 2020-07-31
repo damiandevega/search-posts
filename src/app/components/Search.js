@@ -11,19 +11,16 @@ const styles = (theme) => ({
     position: 'relative',
     margin: '0 auto 1.8rem auto',
     maxWidth: '50%',
-    [theme.breakpoints.up('xs')]: {
+    [theme.breakpoints.down('xs')]: {
       maxWidth: '95%',
     },
     [theme.breakpoints.up('sm')]: {
-      maxWidth: '90%',
+      maxWidth: '85%',
     },
     [theme.breakpoints.up('md')]: {
-      maxWidth: '65%',
-    },
-    [theme.breakpoints.up('lg')]: {
       maxWidth: '55%',
     },
-    [theme.breakpoints.up('xl')]: {
+    [theme.breakpoints.up('lg')]: {
       maxWidth: '50%',
     },
   },
@@ -54,18 +51,18 @@ const styles = (theme) => ({
 const searchInput = React.createRef();
 
 const Search = (props) => {
-  const [typing, setTyping] = useState(false);
+  const [showAutocomplete, setShowAutocomplete] = useState(false);
   const { classes, posts } = props;
 
   const searchInputHandler = (event, text) => {
     let searchValue;
     if (event) {
       searchValue = event.target.value;
-      setTyping(searchValue.length > 0)
+      setShowAutocomplete(searchValue.length > 0)
     } else {
       searchValue = text;
       searchInput.current.value = searchValue;
-      setTyping(false)
+      setShowAutocomplete(false)
     }
     props.search(searchValue);
   };
@@ -102,7 +99,7 @@ const Search = (props) => {
         onChange={searchInputHandler}
         fullWidth
       />
-      {typing && (
+      {showAutocomplete && posts.length > 0 && (
         <div className={classes.autocompleteContainer}>
           {posts.map((post) => (
             <div

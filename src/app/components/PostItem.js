@@ -14,6 +14,7 @@ const styles = () => ({
   },
   header: {
     fontWeight: 'bold',
+    fontSize: '18px',
     lineHeight: '1.3rem',
     margin: '1rem auto'
   },
@@ -72,8 +73,8 @@ const PostItem = (props) => {
         <Paper>
           {!editing ? (
             <div className={classes.post} role="listitem">
-              <Typography variant="h6">
-                <div className={classes.header} name="title">{title}</div>
+              <Typography variant="h2" name="title" className={classes.header}>
+                {title}
               </Typography>
               <Typography variant="body2" paragraph>
                 {body}

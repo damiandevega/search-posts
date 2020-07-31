@@ -9,11 +9,14 @@ const styles = (theme) => ({
     color: 'white',
     padding: '1rem 0',
   },
+  h1: {
+    fontSize: '36px',
+  }
 });
 
 const Header = ({ title, classes }) => (
   <header className={classes.root}>
-    <Typography variant="h4" align="center">
+    <Typography variant="h1" align="center" className={classes.h1}>
       {title}
     </Typography>
   </header>

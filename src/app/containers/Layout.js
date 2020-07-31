@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import PropTypes, { shape, number, string } from 'prop-types';
-import { CircularProgress } from '@material-ui/core';
+import { CircularProgress, Typography } from '@material-ui/core';
 import { loadPosts } from '../../store/actions/postsActions';
 import PostsList from '../../app/components/PostsList';
 import Search from '../components/Search';
@@ -38,7 +38,7 @@ class Layout extends PureComponent {
 
     if (error) {
       return (
-        <h1>There was a problem loading the posts. Please try again later.</h1>
+        <Typography variant="h2">There was a problem loading the posts. Please try again later.</Typography>
       );
     }
 

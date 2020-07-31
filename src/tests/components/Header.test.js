@@ -12,6 +12,6 @@ describe('<Header />', () => {
     );
     expect(header.container).toBeDefined();
     expect(header.container.children.length).toBe(1);
-    expect(header.container.querySelector('h4').textContent).toBe('Test');
+    expect(header.container.querySelector('h1').textContent).toBe('Test');
   });
 });
